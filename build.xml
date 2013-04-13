@@ -8,10 +8,11 @@
         </copy>
     </target>
     <target name="GenerateJar" description="Package into JAR" depends="compile">
-        <jar destfile="mit_ISimplex.jar" basedir="bin" compress="true">
+        <jar destfile="domotica.jar" basedir="bin" compress="true">
              <manifest>
                 <attribute name="Main-Class" value="ist.ControlFunctions"/>
             </manifest>
         </jar>
+    	<copyfile dest="C:\Documents and Settings\Administrator\Desktop\Controlo Sala\BibliotecaJavaControlo\domotica.jar" src="domotica.jar"/>
     </target>
 </project>

@@ -74,7 +74,7 @@ public class ControlFunctions {
         createElement(24, 3, "Ext_Luminosity", DomType.readOnly);
         createElement(25, 4, "Sensor_Door", DomType.readOnly);
         createElement(26, 4, "Sensor_Window", DomType.readOnly);
-        createElement(27, 4, "Sensor_C02", DomType.readOnly);
+        createElement(27, 4, "IntC02", DomType.readOnly);
         createElement(28, 4, "Sensor_Humidity", DomType.readOnly);
         createElement(29, 4, "Sensor_DoorTemp", DomType.readOnly);
         createElement(30, 4, "Sensor_Luminosity", DomType.readOnly);
@@ -122,7 +122,7 @@ public class ControlFunctions {
     public static boolean write(String domotic_name, int value) throws Exception {
         DomoticElement domotic = domoticList.get(domotic_name);
         if (domotic == null) {
-            throw new Exception("Wrong domotic name");
+            throw new Exception("Wrong domotic name: "+domotic_name+"\n"+ domoticList);
         }
         int id = domotic.id;
 
@@ -143,7 +143,7 @@ public class ControlFunctions {
     public static int read(String domotic_name) throws Exception {
         DomoticElement domotic = domoticList.get(domotic_name);
         if (domotic == null) {
-            throw new Exception("Wrong domotic name");
+            throw new Exception("Wrong domotic name: "+domotic_name+"\n"+ domoticList);
         }
         int id = domotic.id;
         int division = domotic.division;

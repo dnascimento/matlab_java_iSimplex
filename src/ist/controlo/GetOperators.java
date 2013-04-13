@@ -15,7 +15,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+ 
 public class GetOperators {
     /** Get info about the "device" in "division" */
     public static Map<String, String> getInfo(int division, int device) {
