@@ -24,10 +24,26 @@ public class ControlFunctions {
     static final String STATE = "Estado";
 
 
+    /**
+     * Run main: ControlFunctions set device value ControlFunctions read device
+     * 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String args[]) throws Exception {
         ControlFunctions.init();
-        System.out.println(ControlFunctions.read("AC_Door_Temp"));
-        // ControlFunctions.write("Light_Middle_Board", 0);
+        try {
+            if (args[0].equals("set")) {
+                ControlFunctions.write(args[1], Integer.parseInt(args[2]));
+                System.out.println("Success!");
+            }
+            if (args[0].equals("read")) {
+                System.out.println(ControlFunctions.read(args[1]));
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Write: ControlFunctions set <device> <value>");
+            System.out.println("Read: ControlFunctions read <device>");
+        }
     }
 
     public static void init() {
@@ -75,7 +91,7 @@ public class ControlFunctions {
         createElement(25, 4, "Sensor_Door", DomType.readOnly);
         createElement(26, 4, "Sensor_Window", DomType.readOnly);
         createElement(27, 4, "IntC02", DomType.readOnly);
-        createElement(28, 4, "Sensor_Humidity", DomType.readOnly);
+        createElement(53, 4, "Sensor_Humidity", DomType.readOnly);
         createElement(29, 4, "Sensor_DoorTemp", DomType.readOnly);
         createElement(30, 4, "Sensor_Luminosity", DomType.readOnly);
         createElement(31, 4, "Sensor_Roof", DomType.readOnly);
@@ -122,7 +138,8 @@ public class ControlFunctions {
     public static boolean write(String domotic_name, int value) throws Exception {
         DomoticElement domotic = domoticList.get(domotic_name);
         if (domotic == null) {
-            throw new Exception("Wrong domotic name: "+domotic_name+"\n"+ domoticList);
+            throw new Exception("Wrong domotic name: " + domotic_name + "\n"
+                    + domoticList);
         }
         int id = domotic.id;
 
@@ -143,7 +160,8 @@ public class ControlFunctions {
     public static int read(String domotic_name) throws Exception {
         DomoticElement domotic = domoticList.get(domotic_name);
         if (domotic == null) {
-            throw new Exception("Wrong domotic name: "+domotic_name+"\n"+ domoticList);
+            throw new Exception("Wrong domotic name: " + domotic_name + "\n"
+                    + domoticList);
         }
         int id = domotic.id;
         int division = domotic.division;
